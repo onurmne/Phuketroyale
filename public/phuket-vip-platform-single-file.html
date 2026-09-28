@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phuket Royale — Phuket Özel Seyahat, Uçak Bileti ve VIP Tur Platformu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, .font-display { font-family: 'Cormorant Garamond', serif; text-wrap: balance; }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body class="bg-[#070B12] text-[#F4F5F7] antialiased selection:bg-[#D4AF37]/30">
+
+  <!-- Top Bar (3-Zone Contract) -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-[#070B12]/90 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <a href="#" class="font-display text-2xl font-bold tracking-tight text-[#D4AF37]">Phuket Royale</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#ucak-bileti" class="hover:text-[#D4AF37] transition-colors">Uçak Bileti</a>
+        <a href="#paketler" class="hover:text-[#D4AF37] transition-colors">Phuket VIP Paketler</a>
+        <a href="#otomasyon" class="hover:text-[#D4AF37] transition-colors">Rezervasyon & Otomasyon</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button onclick="openBookingModal('gold')" class="rounded-lg bg-[#D4AF37] px-4 py-2 text-xs font-semibold text-[#070B12] hover:bg-[#e3be42] transition-colors whitespace-nowrap">
+          Hemen Rezervasyon Yap
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden border-b border-white/10 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <p class="text-xs font-medium tracking-widest text-[#10B981] uppercase mb-3">Yalnızca Phuket'e Özel Butik VIP Seyahat Acentesi · 7/24 Türkçe Concierge</p>
+      <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-white max-w-3xl leading-[1.08]">
+        Phuket'e mi Geliyorsunuz? Hayatınızın Tatilini Planlayalım
+      </h1>
+      <p class="mt-6 max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed">
+        Yalnızca Phuket adasına gelen misafirlerimize özel müstakil havuzlu lüks villalar, HKT Havalimanı VIP araç transferleri, özel yat turları ve VIP gece hayatı organizasyonları.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a href="#paketler" class="rounded-lg bg-[#D4AF37] px-6 py-3.5 text-sm font-semibold text-[#070B12] hover:bg-[#e2be46] transition-colors whitespace-nowrap">
+          Phuket Paketlerini İncele
+        </a>
+        <a href="#ucak-bileti" class="rounded-lg border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/10 transition-colors whitespace-nowrap">
+          Phuket (HKT) Uçak Bileti Ara
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flight Search Section -->
+  <section id="ucak-bileti" class="py-16 border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-8">
+        <p class="text-xs text-slate-400">01 · Phuket Uluslararası Havalimanı (HKT) Uçuş Çözümleri</p>
+        <h2 class="font-display text-3xl font-bold text-white mt-1">Phuket Özel Uçak Bileti Arama</h2>
+      </div>
+      <form onsubmit="handleFlightSearch(event)" class="grid grid-cols-1 md:grid-cols-5 gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-md">
+        <div>
+          <label class="block text-xs text-slate-400 mb-1.5">Kalkış Noktası</label>
+          <select id="flightOrigin" class="w-full rounded-lg border border-white/10 bg-[#0D1320] px-3 py-2.5 text-sm text-white">
+            <option value="IST">İstanbul Havalimanı (IST)</option>
+            <option value="SAW">İstanbul Sabiha Gökçen (SAW)</option>
+            <option value="ESB">Ankara Esenboğa (ESB)</option>
+            <option value="ADB">İzmir Adnan Menderes (ADB)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1.5">Varış Noktası (Sabit)</label>
+          <input type="text" value="Phuket (HKT) — Tayland" readonly class="w-full rounded-lg border border-[#D4AF37]/40 bg-[#0D1320] px-3 py-2.5 text-sm text-[#D4AF37] font-medium" />
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1.5">Gidiş Tarihi</label>
+          <input type="date" id="flightDate" value="2026-11-20" class="w-full rounded-lg border border-white/10 bg-[#0D1320] px-3 py-2.5 text-sm text-white" />
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1.5">Yolcu & Kabin</label>
+          <select id="flightPassengers" class="w-full rounded-lg border border-white/10 bg-[#0D1320] px-3 py-2.5 text-sm text-white">
+            <option value="1">1 Yolcu · Economy</option>
+            <option value="2" selected>2 Yolcu · Economy / VIP</option>
+            <option value="4">4 Yolcu · Grup / Aile</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <button type="submit" class="w-full rounded-lg bg-[#10B981] px-4 py-2.5 text-sm font-semibold text-[#070B12] hover:bg-[#14d394] transition-colors whitespace-nowrap">
+            <i class="fa-solid fa-plane-departure mr-2"></i>Phuket Uçuşlarını Listele
+          </button>
+        </div>
+      </form>
+      <div id="flightResultsContainer" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </div>
+  </section>
+
+  <!-- Phuket Packages Section -->
+  <section id="paketler" class="py-20 border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="mb-12">
+        <p class="text-xs text-slate-400">02 · Phuket'e Özel Tatil Paketleri · Villa + Transfer + VIP Deneyim</p>
+        <h2 class="font-display text-4xl font-bold text-white mt-1">Phuket VIP Tatil Paketleri</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="packageGrid"></div>
+    </div>
+  </section>
+
+  <!-- Supabase & Automation Live Log Section -->
+  <section id="otomasyon" class="py-16">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="font-display text-3xl font-bold text-white mb-6">Supabase Rezervasyon & Telegram Bildirim Akışı</h2>
+      <div id="reservationLogList" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- Booking & Payment Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+    <div class="relative w-full max-w-2xl rounded-2xl border border-white/15 bg-[#0D1320] p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <p class="text-xs text-[#D4AF37]">Supabase & Dinamik IBAN Havuzu Entegrasyonu</p>
+          <h3 id="modalPackageTitle" class="font-display text-2xl font-bold text-white">Phuket Rezervasyon & Ödeme</h3>
+        </div>
+        <button onclick="closeBookingModal()" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="submitReservation(event)" class="mt-5 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Ad Soyad *</label>
+            <input type="text" id="custName" required placeholder="Örn: Ahmet Yılmaz" class="w-full rounded-lg border border-white/15 bg-[#070B12] px-3.5 py-2.5 text-sm text-white" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">E-posta Adresi (5 Gün Önce Hatırlatma İçin) *</label>
+            <input type="email" id="custEmail" required placeholder="ornek@eposta.com" class="w-full rounded-lg border border-white/15 bg-[#070B12] px-3.5 py-2.5 text-sm text-white" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Telefon (WhatsApp / Telegram) *</label>
+            <input type="tel" id="custPhone" required placeholder="+90 5XX XXX XX XX" class="w-full rounded-lg border border-white/15 bg-[#070B12] px-3.5 py-2.5 text-sm text-white" />
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Phuket Seyahat Tarihi (travel_date) *</label>
+            <input type="date" id="custTravelDate" required value="2026-11-20" class="w-full rounded-lg border border-white/15 bg-[#070B12] px-3.5 py-2.5 text-sm text-white" />
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-[#D4AF37]/40 bg-[#D4AF37]/10 p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-300">Otomatik Benzersiz Referans Kodunuz (Havale Açıklamasına Yazınız):</span>
+            <span id="modalRefCode" class="font-mono text-base font-bold text-[#D4AF37] tabular-nums">PHK-2026-XXXX</span>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-white/10 bg-[#070B12] p-4 space-y-1.5">
+          <div class="text-xs text-[#10B981] font-medium">Dinamik IBAN Bilgileri (Supabase / Excel Havuzundan Anlık Çekildi)</div>
+          <div id="ibanBankName" class="text-sm font-semibold text-white">Garanti BBVA Kurumsal</div>
+          <div id="ibanHolder" class="text-xs text-slate-300">PHUKET ROYALE TURİZM VE SEYAHAT A.Ş.</div>
+          <div id="ibanNumber" class="font-mono text-sm text-[#D4AF37] tabular-nums">TR48 0006 2001 4920 0006 2984 10</div>
+        </div>
+
+        <button type="submit" class="w-full rounded-lg bg-[#10B981] py-3.5 text-sm font-semibold text-[#070B12] hover:bg-[#15d195] transition-colors">
+          <i class="fa-solid fa-check-double mr-2"></i>Ödemeyi Yaptım / Bildir (Supabase Kayıt & Telegram Tetikle)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Live Support Widget -->
+  <div class="fixed bottom-5 right-5 z-40">
+    <div id="chatBox" class="hidden mb-3 w-80 rounded-2xl border border-white/15 bg-[#0D1320] p-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <span class="text-xs font-semibold text-white">Phuket Uzmanına Canlı Sorun (Online)</span>
+        <button onclick="toggleChat()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="chatMessages" class="my-3 h-48 overflow-y-auto space-y-2 text-xs">
+        <div class="rounded-lg bg-white/5 p-2.5 text-slate-200">Merhaba! Phuket villaları, uçak bileti veya VIP turlarımız hakkında nasıl yardımcı olabiliriz?</div>
+      </div>
+      <form onsubmit="sendChatMessage(event)" class="flex gap-2">
+        <input id="chatInput" type="text" required placeholder="Mesajınızı yazın..." class="flex-1 rounded-lg border border-white/15 bg-[#070B12] px-3 py-2 text-xs text-white" />
+        <button type="submit" class="rounded-lg bg-[#D4AF37] px-3 py-2 text-xs font-semibold text-[#070B12]">Gönder</button>
+      </form>
+    </div>
+    <button onclick="toggleChat()" class="rounded-full bg-[#10B981] px-5 py-3 text-xs font-semibold text-[#070B12] shadow-lg hover:bg-[#14d494] transition-colors">
+      <i class="fa-solid fa-comments mr-2"></i>Phuket Uzmanına Canlı Sorun (Online)
+    </button>
+  </div>
+
+  <script>
+    const PACKAGES = {
+      standart: { name: 'STANDART PAKET', price: '39.900 THB', features: ['Standart Konforlu Phuket Villası', 'Standart Transfer (4 Kişilik Araç)', 'Phuket Grup Turu', '7/24 Türkçe Phuket Destek Hattı'] },
+      gold: { name: 'GOLD PAKET', price: '64.900 THB', popular: true, features: ['VIP Phuket Transfer (10 Kişilik Van Araç)', 'Premium Phuket Villası', 'VIP (Nightlife) Gece Hayatı Organizasyonu (Loca + Giriş + Alkol)', 'Phuket Aslan ve Fil Doğa Turu', 'Özel Aktiviteler'] },
+      premium: { name: 'PREMIUM PAKET VIP', price: '99.900 THB', features: ['Lüks Phuket Villası', 'Özel Concierge Host (Yerli Kadın veya Erkek Host)', 'Phuket Özel Yat Turu (Adalar Gezisi)', 'VIP Nightlife (Loca + Giriş + Alkol)', 'Phuket Aslan ve Fil Doğa Turu', 'Full Premium Deneyim'] }
+    };
+
+    let currentPackageKey = 'gold';
+    let currentRefCode = '';
+
+    function generateRefCode() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = 'PHK-2026-';
+      for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+      return code;
+    }
+
+    function renderPackages() {
+      const grid = document.getElementById('packageGrid');
+      grid.innerHTML = Object.entries(PACKAGES).map(([key, pkg]) => `
+        <div class="rounded-2xl border ${pkg.popular ? 'border-[#D4AF37]' : 'border-white/10'} bg-white/[0.03] p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-xs text-slate-400 mb-2">${pkg.popular ? 'En Çok Tercih Edilen · Phuket Özel' : 'Phuket Özel Paket'}</div>
+            <h3 class="font-display text-2xl font-bold text-white">${pkg.name}</h3>
+            <div class="mt-3 font-mono text-3xl font-bold text-[#D4AF37] tabular-nums">${pkg.price}</div>
+            <ul class="mt-6 space-y-3 text-sm text-slate-300">
+              ${pkg.features.map(f => `<li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-[#10B981] mt-1"></i><span>${f}</span></li>`).join('')}
+            </ul>
+          </div>
+          <button onclick="openBookingModal('${key}')" class="mt-8 w-full rounded-lg bg-[#D4AF37] py-3 text-xs font-semibold text-[#070B12] hover:bg-[#e5c148] transition-colors">
+            Hemen Satın Al / Rezervasyon Yap
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function handleFlightSearch(e) {
+      e.preventDefault();
+      const origin = document.getElementById('flightOrigin').value;
+      const date = document.getElementById('flightDate').value;
+      const container = document.getElementById('flightResultsContainer');
+      container.innerHTML = `
+        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center justify-between">
+          <div>
+            <div class="text-xs text-[#10B981]">Türk Hava Yolları · TK 172 Direkt Phuket</div>
+            <div class="text-sm font-semibold text-white mt-0.5">${origin} → Phuket (HKT) · ${date}</div>
+            <div class="text-xs text-slate-400 mt-1">01:45 Kalkış · 15:25 Varış · 30 kg Bagaj</div>
+          </div>
+          <div class="text-right">
+            <div class="font-mono text-lg font-bold text-[#D4AF37] tabular-nums">28.500 THB</div>
+            <button onclick="openBookingModal('gold')" class="mt-2 rounded-lg bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-[#D4AF37] hover:text-[#070B12] transition-colors">Pakete Ekle & Al</button>
+          </div>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center justify-between">
+          <div>
+            <div class="text-xs text-[#D4AF37]">Qatar Airways · VIP Business / Economy</div>
+            <div class="text-sm font-semibold text-white mt-0.5">${origin} → Phuket (HKT) · ${date}</div>
+            <div class="text-xs text-slate-400 mt-1">13:50 Kalkış · 06:45 (+1) Varış · Doha Aktarmalı</div>
+          </div>
+          <div class="text-right">
+            <div class="font-mono text-lg font-bold text-[#D4AF37] tabular-nums">24.900 THB</div>
+            <button onclick="openBookingModal('standart')" class="mt-2 rounded-lg bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-[#D4AF37] hover:text-[#070B12] transition-colors">Pakete Ekle & Al</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function openBookingModal(pkgKey) {
+      currentPackageKey = pkgKey;
+      currentRefCode = generateRefCode();
+      document.getElementById('modalPackageTitle').textContent = PACKAGES[pkgKey].name + ' — ' + PACKAGES[pkgKey].price;
+      document.getElementById('modalRefCode').textContent = currentRefCode;
+      document.getElementById('bookingModal').classList.remove('hidden');
+      document.getElementById('bookingModal').classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('flex');
+    }
+
+    // 5 Gün Önce Hatırlatma Maili Şablonu ve Cron Mantığı
+    function buildFiveDayReminderEmail(fullName, travelDate, refCode) {
+      return `Merhaba ${fullName}, Phuket maceranıza sadece 5 gün kaldı! Tatil planlarınızda herhangi bir değişiklik var mı, her şey yolunda mı? VIP transferiniz, villanız ve tüm detaylar sizin için hazır bekliyor. Sorularınız için 7/24 Türkçe destek hattımızdan bize ulaşabilirsiniz. (Ref: ${refCode} | Seyahat Tarihi: ${travelDate})`;
+    }
+
+    // Yapay Zeka Sesli Arama (Voice AI / Vapi / Retell) Placeholder Fonksiyon İskeleti
+    async function triggerAIBotCall(userData) {
+      console.log('Voice AI Arama Tetiklendi:', userData);
+      return {
+        status: 'queued',
+        provider: 'Vapi / Retell Voice AI',
+        targetPhone: userData.phone,
+        referenceCode: userData.referenceCode
+      };
+    }
+
+    async function submitReservation(e) {
+      e.preventDefault();
+      const fullName = document.getElementById('custName').value;
+      const email = document.getElementById('custEmail').value;
+      const phone = document.getElementById('custPhone').value;
+      const travelDate = document.getElementById('custTravelDate').value;
+      const pkg = PACKAGES[currentPackageKey];
+
+      const telegramMsg = `🚀 YENİ PHUKET REZERVASYONU! Müşteri: ${fullName}, Paket: ${pkg.name}, Tarih: ${travelDate}, Referans: ${currentRefCode}`;
+      const reminderMail = buildFiveDayReminderEmail(fullName, travelDate, currentRefCode);
+
+      await triggerAIBotCall({ fullName, email, phone, travelDate, package: pkg.name, referenceCode: currentRefCode });
+
+      const logContainer = document.getElementById('reservationLogList');
+      const item = document.createElement('div');
+      item.className = 'rounded-xl border border-[#10B981]/40 bg-white/[0.03] p-5 space-y-2';
+      item.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-sm font-bold text-[#D4AF37]">${currentRefCode} · Durum: Beklemede (Pending)</span>
+          <span class="text-xs text-[#10B981]">Supabase Kaydedildi & Telegram Bildirildi</span>
+        </div>
+        <div class="text-xs font-mono text-white bg-black/40 p-3 rounded-lg">${telegramMsg}</div>
+        <div class="text-xs text-slate-300"><strong>5 Gün Önce Otomatik Hatırlatma Maili Kurgusu:</strong> ${reminderMail}</div>
+      `;
+      logContainer.prepend(item);
+      closeBookingModal();
+      document.getElementById('otomasyon').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleChat() {
+      document.getElementById('chatBox').classList.toggle('hidden');
+    }
+
+    function sendChatMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      const container = document.getElementById('chatMessages');
+      container.innerHTML += `<div class="rounded-lg bg-[#D4AF37]/20 p-2 text-right text-white">${msg}</div>`;
+      input.value = '';
+      setTimeout(() => {
+        container.innerHTML += `<div class="rounded-lg bg-[#10B981]/20 p-2.5 text-slate-100">Müşteri temsilcimiz (Türkçe Destek) birazdan sizinle ilgilenecektir.</div>`;
+        container.scrollTop = container.scrollHeight;
+      }, 400);
+    }
+
+    renderPackages();
+  </script>
+</body>
+</html>

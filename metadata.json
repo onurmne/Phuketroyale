@@ -1,0 +1,6 @@
+{
+  "name": "Phuket Royale — VIP Seyahat, Uçak Bileti ve Tur Platformu",
+  "description": "Yalnızca Phuket'e özel VIP villa konaklamaları, uçak bileti çözümleri, özel yat turları ve akıllı rezervasyon otomasyon platformu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
